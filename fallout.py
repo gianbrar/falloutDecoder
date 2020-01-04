@@ -1,5 +1,6 @@
 import random
 import time
+import os
 
 # R A C F J N T W should generate I H L M O S D A
 
@@ -9,7 +10,13 @@ tempCode2 = ""
 specialChar = ""
 def codeFunc():
   global code
-  code = input("Welcome to Nuclear Fallout Decoder V.7.6 Please insert code (letter section only).")
+  code = input("Welcome to Nuclear Fallout Decoder V.7.6 Please insert code with letters and numbers. Enter help for assistance.")
+  if code.lower() == "help":
+    input("'HELP' REGISTERED: EXAMPLES: ENTER R6A6C3F5J6N0T2W3 and get back IHLMOSDA which is to be decoded by hand into HALIDOMS which is then automatically translated into the nuclear launch code. [PRESS ENTER TO CONTINUE]")
+    os.system("clear")
+    codeFunc()
+  numCode = code[1] + code[3] + code[5] + code[7] + code[9] + code[11] + code[13] + code[15]
+  code = code[0] + code[2] + code[4] + code[6] + code[8] + code[10] + code[12] + code[14]
   code = code.upper()
 codeFunc()
 
@@ -209,9 +216,9 @@ def printCode(codeRun):
       specialChar = "/"
     elif specialChar == 92:
       specialChar = "?"
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    time.sleep(.025)
+    os.system("clear")
   print(specialChar + tempCode2)
-  time.sleep(.025)
 
 def charTrans(char):
   Outputs = ["H","F","L","J","E","M","N","B","C","O","P","Q","R","S","G","T","U","I","K","D","V","W","A","X","Y","Z"]
@@ -220,11 +227,13 @@ def charTrans(char):
 def fullTrans(charLen, inCode):
   outCode = ""
   for charNum in range(charLen):
-    outCode += charTrans(inCode[:charNum])
+    outCode += charTrans(inCode[charNum])
   return outCode
 
 
-# printCode(1)
+#printCode(1)
 print(code)
 print(fullTrans(8, code))
-print("test finished!")
+newCode = input("Please descramble " + fullTrans(8, code) + " into an actual word. (E.G.: IHLMOSDA becomes HALIDOMS)")
+newCode = newCode.upper()
+newCode = fullTrans(8, code)
