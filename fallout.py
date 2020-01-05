@@ -8,17 +8,108 @@ tempCode = ""
 newCodeRun = 10
 tempCode2 = ""
 specialChar = ""
+
 def codeFunc():
   global code
+  global numCode
+  global transCode
   code = input("Welcome to Nuclear Fallout Decoder V.7.6 Please insert code with letters and numbers. Enter help for assistance.")
   if code.lower() == "help":
     input("'HELP' REGISTERED: EXAMPLES: ENTER R6A6C3F5J6N0T2W3 and get back IHLMOSDA which is to be decoded by hand into HALIDOMS which is then automatically translated into the nuclear launch code. [PRESS ENTER TO CONTINUE]")
     os.system("clear")
     codeFunc()
-  numCode = code[1] + code[3] + code[5] + code[7] + code[9] + code[11] + code[13] + code[15]
+  print("Please wait....")
+  numCode = [code[1], code[3], code[5], code[7], code[9], code[11], code[13], code[15]]
+  transCode = [code[0], code[2], code[4], code[6], code[8], code[10], code[12], code[14]]
   code = code[0] + code[2] + code[4] + code[6] + code[8] + code[10] + code[12] + code[14]
   code = code.upper()
+  
 codeFunc()
+
+def charTrans(char):
+  Outputs = ["H","F","L","J","E","M","N","B","C","O","P","Q","R","S","G","T","U","I","K","D","V","W","A","X","Y","Z"]
+  return Outputs[ord(char)-65]
+
+def fullTrans(charLen, inCode):
+  outCode = ""
+  for charNum in range(charLen):
+    outCode += charTrans(inCode[charNum])
+  return outCode
+
+
+def backCharTrans(char):
+  Outputs = ["W","H","I","T","E","B","O","A","R","D","S","C","F","G","J","K","L","M","N","P","Q","U","V","X","Y","Z"]
+  return Outputs[ord(char)-65]
+
+def backFullTrans(charLen, inCode):
+  outCode = ""
+  for charNum in range(charLen):
+    outCode += backCharTrans(inCode[charNum])
+  return outCode
+
+
+def transTrans(char, codeList):
+  return codeList[ord(char)-65]
+
+def numTrans(charLen, inCode):
+  transCode = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+  for numNum in range(charLen):
+    transCode[ord(code[numNum])-65] = int(numCode[numNum])
+  outNum = ""
+  for charNum in range(charLen):
+    outNum += str(transTrans(inCode[charNum], transCode))
+  print(outNum)
+
+def RemoveFromList(thelist, val):
+  return [value for value in thelist if value != val]
+
+def GetDic():
+    try:
+        dicopen = open("DL.txt", "r")
+        dicraw = dicopen.read()
+        dicopen.close()
+        diclist = dicraw.split("\n")
+        diclist = RemoveFromList(diclist, '')
+        return diclist
+    except FileNotFoundError:
+        print("No Dictionary! Please raise an issue on https://github.com/thehiddenmonkey/falloutDecoder")
+        return 
+    
+def Word2Vect(word):
+    l = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    v = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    w = word.lower()
+    wl = list(w)
+    for i in range(0, len(wl)):
+        if wl[i] in l:
+            ind = l.index(wl[i])
+            v[ind] += 1
+    return v
+
+def Vect2Int(vect):
+    pv = 0
+    f = 0
+    for i in range(0, len(vect)):
+        wip = (vect[i]*(2**pv))
+        f += wip
+        pv += 4
+    return f
+    
+def Ints2Dic(dic):
+    d = {}
+    for i in range(0, len(dic)):
+        v = Word2Vect(dic[i])
+        Int = Vect2Int(v)
+        if Int in d:
+            tat = d.get(Int)
+            tat.append(dic[i])
+            d[Int] = tat
+        elif Int not in d:
+            d[Int] = [dic[i]]
+    return d
+        
+d = GetDic()
+ind = Ints2Dic(d)
 
 def printCode(codeRun):
   tempCode = code[:codeRun]
@@ -219,21 +310,21 @@ def printCode(codeRun):
     time.sleep(.025)
     os.system("clear")
   print(specialChar + tempCode2)
-
-def charTrans(char):
-  Outputs = ["H","F","L","J","E","M","N","B","C","O","P","Q","R","S","G","T","U","I","K","D","V","W","A","X","Y","Z"]
-  return Outputs[ord(char)-65]
-
-def fullTrans(charLen, inCode):
-  outCode = ""
-  for charNum in range(charLen):
-    outCode += charTrans(inCode[charNum])
-  return outCode
-
+def unscramble(inCode):
+  s = inCode
+  v = Vect2Int(Word2Vect(s))
+  tp = ind.get(v, 'Word Not in Dictionary.')
+  if tp == 'Word Not in Dictionary.': 
+    unscrambledCode = input("Please descramble " + inCode + " into an actual word. (E.G.: IHLMOSDA becomes HALIDOMS)")
+    return unscrambledCode
+  return tp
 
 #printCode(1)
-print(code)
-print(fullTrans(8, code))
-newCode = input("Please descramble " + fullTrans(8, code) + " into an actual word. (E.G.: IHLMOSDA becomes HALIDOMS)")
-newCode = newCode.upper()
 newCode = fullTrans(8, code)
+newCode = unscramble(newCode)
+global outCode
+print("Possible codes:")
+for x in range(len(newCode)):
+  outCode = backFullTrans(8, newCode[x].upper())
+  outcode = numTrans(8, outCode)
+  
