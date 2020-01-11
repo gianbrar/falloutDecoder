@@ -9,22 +9,47 @@ newCodeRun = 10
 tempCode2 = ""
 specialChar = ""
 
+
+def list_splice(target, start, delete_count=None, *items):
+    if delete_count == None:
+        delete_count = len(target) - start
+    total = start + delete_count
+    removed = target[start:total]
+
+
 def codeFunc():
   global code
   global numCode
   global transCode
-  code = input("Welcome to Nuclear Fallout Decoder V.7.6 Please insert code with letters and numbers. Enter help for assistance.")
+  global keyword
+  code = input("Welcome to Nuclear Fallout Decoder V.7.6 Please insert cipher with letters and numbers. Enter help for assistance.")
   if code.lower() == "help":
     input("'HELP' REGISTERED: EXAMPLES: ENTER R6A6C3F5J6N0T2W3 and get back IHLMOSDA which is to be decoded by hand into HALIDOMS which is then automatically translated into the nuclear launch code. [PRESS ENTER TO CONTINUE]")
     os.system("clear")
     codeFunc()
+  keyword = input("Please insert the code-word from the Enclave bunker's military wing.").upper()
   print("Please wait....")
   numCode = [code[1], code[3], code[5], code[7], code[9], code[11], code[13], code[15]]
   transCode = [code[0], code[2], code[4], code[6], code[8], code[10], code[12], code[14]]
   code = code[0] + code[2] + code[4] + code[6] + code[8] + code[10] + code[12] + code[14]
   code = code.upper()
+
+def killMe():
+  defaultAlphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+  decodeAlphabet = []
+  enodeAlphabet = []
+  for i in range(len(keyword)):
+    decodeAlphabet.append(keyword[i])
+    defaultAlphabet.remove(keyword[i])
+  decodeAlphabet.extend(defaultAlphabet)
+  print(decodeAlphabet)
   
+
+
+
+
 codeFunc()
+killMe()
 
 def charTrans(char):
   Outputs = ["H","F","L","J","E","M","N","B","C","O","P","Q","R","S","G","T","U","I","K","D","V","W","A","X","Y","Z"]
