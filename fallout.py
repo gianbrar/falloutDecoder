@@ -1,7 +1,8 @@
 import random
 import time
 import os
-
+global defaultAlphabet
+defaultAphabet = []
 # R A C F J N T W should generate I H L M O S D A
 
 tempCode = ""
@@ -22,6 +23,8 @@ def codeFunc():
   global numCode
   global transCode
   global keyword
+  global defaultAlphabet
+  defaultAlphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
   code = input("Welcome to Nuclear Fallout Decoder V.7.6 Please insert cipher with letters and numbers. Enter help for assistance.")
   if code.lower() == "help":
     input("'HELP' REGISTERED: EXAMPLES: ENTER R6A6C3F5J6N0T2W3 and get back IHLMOSDA which is to be decoded by hand into HALIDOMS which is then automatically translated into the nuclear launch code. [PRESS ENTER TO CONTINUE]")
@@ -35,6 +38,7 @@ def codeFunc():
   code = code.upper()
 
 def killMe():
+  global decodeAlphabet
   defaultAlphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
   decodeAlphabet = []
   enodeAlphabet = []
@@ -42,17 +46,27 @@ def killMe():
     decodeAlphabet.append(keyword[i])
     defaultAlphabet.remove(keyword[i])
   decodeAlphabet.extend(defaultAlphabet)
-  print(decodeAlphabet)
-  
+  defaultAlphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
+
+def killMeTwice():
+  global encodeAlphabet
+  encodeAlphabet= []
+  counter = 0
+  while len(encodeAlphabet)<len(decodeAlphabet):
+    encodeAlphabet.append(defaultAlphabet[decodeAlphabet.index(defaultAlphabet[counter])]);
+    counter+=1
 
 
 
 codeFunc()
 killMe()
+killMeTwice()
+print(decodeAlphabet)
+print(encodeAlphabet)
 
 def charTrans(char):
-  Outputs = ["H","F","L","J","E","M","N","B","C","O","P","Q","R","S","G","T","U","I","K","D","V","W","A","X","Y","Z"]
+  Outputs = encodeAlphabet
   return Outputs[ord(char)-65]
 
 def fullTrans(charLen, inCode):
@@ -63,7 +77,7 @@ def fullTrans(charLen, inCode):
 
 
 def backCharTrans(char):
-  Outputs = ["W","H","I","T","E","B","O","A","R","D","S","C","F","G","J","K","L","M","N","P","Q","U","V","X","Y","Z"]
+  Outputs = decodeAlphabet
   return Outputs[ord(char)-65]
 
 def backFullTrans(charLen, inCode):
